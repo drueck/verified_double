@@ -3,7 +3,7 @@ require 'verified_double'
 
 describe VerifiedDouble do
   describe ".registry" do
-    it "is a array", verifies_contract: 'VerifiedDouble.registry()=>Array' do
+    it "is an array" do
       registry = VerifiedDouble.registry
       expect(registry).to be_an(Array)
     end
@@ -86,7 +86,6 @@ describe VerifiedDouble do
     let(:method_signatures_report) { VerifiedDouble.of_instance('VerifiedDouble::MethodSignaturesReport') }
     let(:method_signatures_report_class) {
       VerifiedDouble.of_class('VerifiedDouble::MethodSignaturesReport') }
-
 
     it "builds a method signatures report, determines unverified signatures, and ouputs them" do
       nested_example_group

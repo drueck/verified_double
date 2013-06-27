@@ -75,9 +75,20 @@ module VerifiedDouble
       method_signature = MethodSignature.new(
         class_name: class_name,
         method_operator: method_operator,
-        method: method.to_s)
+        method: method.to_s,
+        stack_frame: StackFrame.new(caller(2)[0]))
 
       self.method_signatures << method_signature
+    end
+  end
+
+  class StackFrame
+    def initialize(string)
+      @string = string
+    end
+
+    def to_s
+      @string.gsub(%r{.*/spec/}, "./spec/")
     end
   end
 end

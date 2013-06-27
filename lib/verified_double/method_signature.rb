@@ -1,6 +1,6 @@
 module VerifiedDouble
   class MethodSignature
-    attr_accessor :args, :class_name, :method, :method_operator, :return_values
+    attr_accessor :args, :class_name, :stack_frame, :method, :method_operator, :return_values
 
     def initialize(attributes = {})
       attributes.each do |name, value|
@@ -50,6 +50,10 @@ module VerifiedDouble
         "#{class_name}#{method_operator}#{method}(#{args_string})",
         return_values_string]
       result.flatten.compact.join("=>")
+    end
+
+    def to_s_with_trace
+      "#{to_s}\n  # #{stack_frame}"
     end
   end
 end
